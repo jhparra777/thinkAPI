@@ -3,147 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación API - LLM</title>
+    <title>Documentación de la API LLM</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: #f5f7fa;
-            color: #2c3e50;
-            line-height: 1.6;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             display: flex;
-            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
         header {
-            background-color: #3498db;
+            background-color: #1e293b;
             color: white;
-            padding: 20px 0;
+            padding: 1rem;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        nav {
+            width: 220px;
+            background-color: #f8fafc;
+            padding-top: 4rem;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            border-right: 1px solid #e2e8f0;
         }
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        nav ul {
+            list-style: none;
+            padding: 0;
         }
 
-        /* Main Content */
-        main {
-            flex: 1;
-            padding: 60px 0;
+        nav ul li {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .intro-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
-        }
-
-        .intro-section h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .intro-section p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
+        nav ul li a {
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            color: #1e293b;
+            font-weight: bold;
         }
 
-        .btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        main {
+            margin-left: 220px;
+            padding: 6rem 2rem 2rem;
+            flex-grow: 1;
+            background-color: #f1f5f9;
         }
 
-        .button-center {
-            text-align: center;
+        .button-container {
+            margin-top: 2rem;
         }
 
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
+        .docs-button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            background-color: #0ea5e9;
             color: white;
-            padding: 20px 0;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: white;
             text-align: center;
-            margin-top: auto;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        footer p {
-            margin-bottom: 10px;
-        }
-
-        .developer-info {
-            font-weight: 600;
-            color: #3498db;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5rem;
+            nav {
+                display: none;
             }
-            
-            .intro-section {
-                padding: 30px 20px;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 1rem;
+            main {
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Documentación API - LLM</h1>
-            <p>Interfaz de programación para integración de Large Language Model</p>
-        </div>
+        <h1>API LLM – Procesamiento de Información</h1>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Descripción</a></li>
+            <li><a href="#">Endpoints</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <div class="container">
-            <section class="intro-section">
-                <h2>Introducción al uso de LLM</h2>
-                <p>
+        <section>
+            <h2>Bienvenido</h2>
+            	<p>
                     Nuestra API proporciona acceso a un Large Language Model (LLM) de última generación, 
                     diseñado para ser consumido por aplicaciones que requieren procesamiento de lenguaje natural avanzado.
                 </p>
@@ -156,25 +121,23 @@
                     El modelo está optimizado para ofrecer alta precisión en tareas como generación de texto, 
                     análisis de sentimientos, traducción, resumen de contenido y asistencia conversacional.
                 </p>
-                
-                <div class="button-center">
-                    <a href="#" id="docs-link" class="btn">Acceder a la Documentación</a>
-                </div>
-            </section>
-        </div>
+
+            <div class="button-container">
+		 <a id="docs-link" class="docs-button">Acceder a la Documentación</a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Todos los derechos reservados</p>
-            <p class="developer-info">Ing. Jesús Parra</p>
-        </div>
+        © 2025 Todos los derechos reservados – Desarrollado por Jesús Parra | Contacto: <a href="mailto:parra.jesus@gmail.com" style="color: #38bdf8;">parra.jesus@gmail.com</a>
     </footer>
+
+    <script>
+        // Obtiene la URL base (ej: "https://tusitio.onrender.com")
+        const baseUrl = window.location.origin;
+        // const baseUrl = "http://127.0.0.1:8000";
+        // Actualiza el enlace
+        document.getElementById("docs-link").href = `${baseUrl}/docs`;
+    </script>
 </body>
 </html>
-<script>
-     // Obtiene la URL base (ej: "https://tusitio.onrender.com")
-    const baseUrl = window.location.origin;
-    // Actualiza el enlace
-    document.getElementById("docs-link").href = `${baseUrl}/docs`;
-</script> 
