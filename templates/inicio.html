@@ -158,7 +158,7 @@
                 </p>
                 
                 <div class="button-center">
-                    <a href="${baseUrl}/docs" class="btn">Acceder a la Documentación</a>
+                    <a href="#" id="docs-link" class="btn">Acceder a la Documentación</a>
                 </div>
             </section>
         </div>
@@ -172,3 +172,9 @@
     </footer>
 </body>
 </html>
+<script>
+     // Obtiene la URL base (ej: "https://tusitio.onrender.com")
+    const baseUrl = window.location.origin;
+    // Actualiza el enlace
+    document.getElementById("docs-link").href = `${baseUrl}/docs`;
+</script> 
