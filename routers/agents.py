@@ -7,21 +7,19 @@ routerChat = APIRouter()
 class Query(BaseModel):
     question: str
 
-# Definicion del e 
+# Definicion del endpoint /chat
+
 @routerChat.post("/chat")
 def chat(query: Query):
     '''
-    <strong>Devuelve un diccionario año, cantidad de items y porcentaje de contenido libre por empresa desarrolladora</strong>
-             
-    Parametro
-    ---------  
-            question : Pregunta que se le hace al agente de IA, por ejemplo:
-            "¿Cuántos videojuegos desarrolló Nintendo en 2022 y qué porcentaje de ellos son gratuitos?"
-    
-    Retorna
-    -------
-            answer   : Respuesta del agente de IA
+    ## Endpoint `/ask`
+    Devuelve una respuesta generada por un agente de IA basada en la pregunta del usuario.
 
+    ### Parámetros (Body)
+    - **question**: Pregunta que se le hace al agente de IA (ejemplo: _"¿Cuántos videojuegos desarrolló Nintendo en 2022 y qué porcentaje de ellos son gratuitos?"_).
+
+    ### Respuesta
+    - **answer**: Respuesta generada por el modelo de IA.
     '''
     # Aquí puedes invocar LangChain o cualquier lógica
     response = f"Recibí tu pregunta: {query.question}"
