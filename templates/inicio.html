@@ -289,11 +289,16 @@ fetchData();</code></pre>
   </footer>
 
   <script>
-    // Define la URL base (puedes usar window.location.origin si está en producción)
-    const baseUrl = "http://127.0.0.1:8000";
-    // const baseUrl = window.location.origin;
-    // Apunta ambos botones al endpoint /docs
-    document.getElementById("docs-link").href = `${baseUrl}/docs`;
-  </script>
+    // Define la URL base (usando window.location.origin para compatibilidad con producción y desarrollo)
+    const baseUrl = window.location.origin;
+    
+    // Apunta el botón con id "docs-link" al endpoint /docs
+    document.addEventListener('DOMContentLoaded', function() {
+        const docsLink = document.getElementById("docs-link");
+        if (docsLink) {
+            docsLink.href = `${baseUrl}/docs`;
+        }
+    });
+</script>
 </body>
 </html>
