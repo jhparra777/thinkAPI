@@ -1,143 +1,305 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación de la API LLM</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Introducción a nuestra API</title>
+  <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+
+        * {
             margin: 0;
-            display: flex;
-            min-height: 100vh;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         header {
-            background-color: #1e293b;
-            color: white;
-            padding: 1rem;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 80px 0;
             text-align: center;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
 
-        nav {
-            width: 220px;
-            background-color: #f8fafc;
-            padding-top: 4rem;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            border-right: 1px solid #e2e8f0;
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
         }
 
-        nav ul {
-            list-style: none;
-            padding: 0;
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--dark-color);
         }
 
-        nav ul li {
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #1e293b;
-            font-weight: bold;
-        }
-
-        main {
-            margin-left: 220px;
-            padding: 6rem 2rem 2rem;
-            flex-grow: 1;
-            background-color: #f1f5f9;
-        }
-
-        .button-container {
-            margin-top: 2rem;
-        }
-
-        .docs-button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            background-color: #0ea5e9;
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
             color: white;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-docs {
+            background-color: var(--accent-color);
+        }
+
+        .btn-docs:hover {
+            background-color: #c0392b;
+        }
+
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .code-example {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+        }
+
+        .token.punctuation {
+            color: #abb2bf;
+        }
+
+        .token.keyword {
+            color: #c678dd;
+        }
+
+        .token.string {
+            color: #98c379;
+        }
+
+        .token.function {
+            color: #61afef;
         }
 
         footer {
-            background-color: #1e293b;
+            background-color: var(--secondary-color);
             color: white;
+            padding: 30px 0;
             text-align: center;
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @media (max-width: 768px) {
-            nav {
-                display: none;
+            .hero h1 {
+                font-size: 2rem;
             }
-            main {
-                margin-left: 0;
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>API LLM – Procesamiento de Información</h1>
-    </header>
+  <header>
+    <div class="container header-content">
+      <a href="#" class="logo">API<span style="color: var(--accent-color);">Docs</span></a>
+      <nav>
+        <a href="#introduccion" class="btn">Introducción</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Descripción</a></li>
-            <li><a href="#">Endpoints</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-    </nav>
+  <section class="hero">
+    <div class="container">
+      <h1>Bienvenido a nuestra potente API</h1>
+      <p>Una solución robusta y escalable para integrar nuestros servicios en tus aplicaciones. Descubre cómo puedes aprovechar al máximo nuestra interfaz de programación.</p>
+      <!-- Aquí se usa el botón dinámico con ID -->
+      <a id="docs-link" class="btn btn-docs">Ver Documentación API</a>
+    </div>
+  </section>
 
-    <main>
-        <section>
-            <h2>Bienvenido</h2>
-            	<p>
-                    Nuestra API proporciona acceso a un Large Language Model (LLM) de última generación, 
-                    diseñado para ser consumido por aplicaciones que requieren procesamiento de lenguaje natural avanzado.
-                </p>
-                <p>
-                    Esta interfaz permite a los desarrolladores integrar capacidades de inteligencia artificial 
-                    en sus aplicaciones de manera sencilla y eficiente, ofreciendo respuestas coherentes y 
-                    contextualizadas a consultas en lenguaje natural.
-                </p>
-                <p>
-                    El modelo está optimizado para ofrecer alta precisión en tareas como generación de texto, 
-                    análisis de sentimientos, traducción, resumen de contenido y asistencia conversacional.
-                </p>
+  <section class="content-section" style="background-color: #f8f9fa;">
+    <div class="container">
+      <h2 class="section-title">Ejemplo básico de uso</h2>
+      <p>Aquí tienes un ejemplo básico de cómo hacer una petición a nuestra API usando JavaScript:</p>
+      <div class="code-example">
+        <pre><code>// Configuración inicial
+const apiUrl = 'http://127.0.0.1:8000/api';
+const apiKey = 'TU_CLAVE_API';
 
-            <div class="button-container">
-		 <a id="docs-link" class="docs-button">Acceder a la Documentación</a>
-            </div>
-        </section>
-    </main>
+async function fetchData() {
+    try {
+        const response = await fetch(`${apiUrl}/datos`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Datos recibidos:', data);
+        return data;
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
+    }
+}
 
-    <footer>
-        © 2025 Todos los derechos reservados – Desarrollado por Jesús Parra | Contacto: <a href="mailto:parra.jesus@gmail.com" style="color: #38bdf8;">parra.jesus@gmail.com</a>
-    </footer>
+// Llamada a la función
+fetchData();</code></pre>
+      </div>
 
-    <script>
-        // Obtiene la URL base (ej: "https://tusitio.onrender.com")
-        const baseUrl = window.location.origin;
-        // const baseUrl = "http://127.0.0.1:8000";
-        // Actualiza el enlace
-        document.getElementById("docs-link").href = `${baseUrl}/docs`;
-    </script>
+      <p style="text-align: center; margin-top: 30px;">
+        <a id="docs-link-2" class="btn btn-docs">Acceder a la Documentación</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 API Docs. Todos los derechos reservados. | Sitio oficial: <a href="https://wizards.lat/" target="_blank" style="color: white;">wizards.lat</a> </p>
+  </footer>
+
+  <script>
+    // Define la URL base (puedes usar window.location.origin si está en producción)
+    const baseUrl = "http://127.0.0.1:8000";
+
+    // Apunta ambos botones al endpoint /docs
+    document.getElementById("docs-link").href = `${baseUrl}/docs`;
+    document.getElementById("docs-link-2").href = `${baseUrl}/docs`;
+  </script>
 </body>
 </html>
